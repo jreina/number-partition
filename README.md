@@ -38,5 +38,12 @@ partition(5)(190);
 // [ 9, 4, 115, 47, 15 ]
 ```
 
+## Running tests
+```bash
+npm install
+npm test
+```
+The tests are written with Mocha using Chai as an assertion library.
+
 ## License
 [WTFPL](http://www.wtfpl.net/txt/copying/)
