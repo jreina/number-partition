@@ -1,6 +1,6 @@
 {
   "name": "number-partition",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Partition a number, x, into n partitions.",
   "main": "number-partition.js",
   "directories": {
@@ -13,7 +13,12 @@
     "type": "git",
     "url": "git+https://github.com/jreina/number-partition.git"
   },
-  "keywords": ["math", "number", "partition", "utility"],
+  "keywords": [
+    "math",
+    "number",
+    "partition",
+    "utility"
+  ],
   "author": "Johnny Reina <johnny.r.reina@gmail.com>",
   "license": "WTFPL",
   "bugs": {
