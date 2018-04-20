@@ -1,8 +1,14 @@
+/**
+ *
+ * @param {number} leftover
+ * @param {number} partitionRemainder
+ * @param {Array.<number>} partitions
+ * @returns {Array.<number>}
+ */
 const partitionR = (leftover, partitionRemainder, partitions) => {
-  if (partitionRemainder === 1) return partitions.concat(leftover);
   const delta = Math.ceil(Math.random() * (leftover - partitionRemainder));
-  return leftover === partitionRemainder
-    ? partitions.concat(1)
+  return partitionRemainder === 1
+    ? partitions.concat(leftover)
     : partitionR(
         leftover - delta,
         partitionRemainder - 1,
@@ -12,21 +18,22 @@ const partitionR = (leftover, partitionRemainder, partitions) => {
 
 /**
  * Partition a given natural number, `x`, into `n` partitions. Quotients are accepted for `x` and `n` but are floored to integer values.
+ * @param {number} n
+ * @returns {(x: number) => Array.<number>}
  */
-const partitionInto = (/** @type {number} */ n) => (
-  /** @type {number} */ x
-) => {
+const partitionInto = n => x => {
   if (x < n) {
     throw new Error(
       'Invalid arguments. The number to be partitioned must exceed the number of partitions!'
     );
   }
-  try {
-    return partitionR(Math.floor(x), Math.floor(n), []);
-  } catch (err) {
-    err.message = `(${n}, ${x})\n${err.message}`;
-    throw err;
+  if (n < 1) {
+    throw new Error('Invalid arguments. Must have at least 1 partition.');
   }
+  if (x < 0) {
+    throw new Error('Invalid arguments. Number to partition must be > 0.');
+  }
+  return partitionR(Math.floor(x), Math.floor(n), []);
 };
 
 module.exports = partitionInto;
