@@ -27,7 +27,7 @@ describe('#partition', function() {
         sum: partitions.reduce((x, y) => x + y)
       }))
       .forEach(({ seed: { x, n }, sum, partitions }) => {
-        expect(sum).to.equal(x, `Sum didn't match.`);
+        expect(sum).to.equal(x, `Sum didn't match. Expected ${x} got ${sum}`);
         expect(partitions.length).to.equal(
           n,
           `Partition length did not match! expected ${n} got ${
