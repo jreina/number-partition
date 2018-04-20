@@ -36,6 +36,15 @@ partition(5)(190);
 
 partition(5)(190);
 // [ 9, 4, 115, 47, 15 ]
+
+const intoFive = partition(5);
+
+intoFive(512);
+// [ 488, 18, 2, 2, 2 ]
+
+intoFive(512);
+// [ 281, 83, 77, 18, 53 ]
+
 ```
 
 ## Running tests
