@@ -2,11 +2,24 @@ const { expect } = require('chai');
 const partition = require('../number-partition');
 
 describe('#partition', function() {
-  it('Should successfully partition 5,000 numbers', function() {
-    Array(5000)
+  it('Should throw correct error when n < 1', function() {
+    expect(() => partition(0.9)(100)).to.throw(/^Invalid arguments\./);
+  });
+
+  it('Should throw correct error when x < 0', function() {
+    expect(() => partition(1)(-0.1)).to.throw(/^Invalid arguments\./);
+  });
+
+  it('Should throw appropriate error when x is 0', function() {
+    expect(() => partition(1)(0)).to.throw(/^Invalid arguments\./);
+  });
+
+  it('Should successfully partition 1,000 numbers', function() {
+    const floorEach = arr => arr.map(Math.floor);
+    Array(1000)
       .fill(0)
-      .map(() => [Math.random(), Math.random()])
-      .map(([p, q]) => [p * 512 + 512, q * 512 + 3])
+      .map(() => [Math.random() * 512 + 512, Math.random() * 512 + 1])
+      .map(floorEach)
       .map(([x, n]) => ({ partitions: partition(n)(x), seed: { n, x } }))
       .map(({ partitions, seed }) => ({
         seed,
@@ -14,10 +27,10 @@ describe('#partition', function() {
         sum: partitions.reduce((x, y) => x + y)
       }))
       .forEach(({ seed: { x, n }, sum, partitions }) => {
-        expect(Math.floor(sum)).to.equal(Math.floor(x));
+        expect(sum).to.equal(x, `Sum didn't match.`);
         expect(partitions.length).to.equal(
-          Math.floor(n),
-          `Partition length did not match! expected ${Math.floor(n)} got ${
+          n,
+          `Partition length did not match! expected ${n} got ${
             partitions.length
           }`
         );
