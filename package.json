@@ -1,6 +1,6 @@
 {
   "name": "number-partition",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Partition a number, x, into n partitions.",
   "main": "number-partition.js",
   "directories": {
